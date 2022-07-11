@@ -4,6 +4,7 @@ import Button from "../button/button.component";
 import { AuthContext } from "../contexts/auth";
 import { ProductsContext } from "../contexts/products";
 import Products from "../products/products.component";
+import { HomeContainer } from "./home.styles";
 
 const Home = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -23,7 +24,7 @@ const Home = () => {
 
   
   return (
-    <>
+    <HomeContainer>
       <h1>HOME</h1>
       <h1>{user.name}</h1>
       {loading ? (
@@ -36,7 +37,7 @@ const Home = () => {
         <div>No products found.</div>
       )}
       <Button onClick={handleLogout}>Logout</Button>
-    </>
+    </HomeContainer>
   );
 };
 

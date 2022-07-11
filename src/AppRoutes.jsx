@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { AuthContext, AuthProvider } from "./components/contexts/auth";
 import { ProductsProvider } from "./components/contexts/products";
+import { TagsProvider } from "./components/contexts/tags";
 import Home from "./components/home-component/home.component";
 import Login from "./components/login/login-page.component";
 
@@ -25,18 +26,20 @@ const AppRoutes = () => {
     <Router>
       <AuthProvider>
         <ProductsProvider>
-          <Routes>
-            <Route exact path="/login" element={<Login />} />
-            <Route
-              exact
-              path="/"
-              element={
-                <Private>
-                  <Home />
-                </Private>
-              }
-            />
-          </Routes>
+          <TagsProvider>
+            <Routes>
+              <Route exact path="/login" element={<Login />} />
+              <Route
+                exact
+                path="/"
+                element={
+                  <Private>
+                    <Home />
+                  </Private>
+                }
+              />
+            </Routes>
+          </TagsProvider>
         </ProductsProvider>
       </AuthProvider>
     </Router>

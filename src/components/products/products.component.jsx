@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { api } from "../../services/api";
 import { ProductsContext } from "../contexts/products";
+import Tags from "../tags/tags.component copy";
 
 const Products = ({ product }) => {
   const { removeProduct, showProductTags } = useContext(ProductsContext);
@@ -9,7 +10,7 @@ const Products = ({ product }) => {
     removeProduct(product);
   };
 
-  const showProductTagsHandler = () => {
+   const showProductTagsHandler = () => {
     api.get(`/product/tags/`, { params: { id: product.id } }).then((res) => {
       setTags(res.data);
     });
@@ -21,13 +22,7 @@ const Products = ({ product }) => {
       <h3>Name: {product.name}</h3>
       <button onClick={removeProductHandler}>&#10005;</button>
       <button onClick={showProductTagsHandler}>Show Tags &#10095;</button>
-      {tags &&
-        tags.map((tag) => (
-          <div key={tag.id}>
-            <div>Tag ID: {tag.id}</div>
-            <div>Tag name: {tag.name}</div>
-          </div>
-        ))}
+      {tags && tags.map((tag) => <Tags key={tag.id} tag={tag} product={product}></Tags>)}
     </div>
   );
 };
