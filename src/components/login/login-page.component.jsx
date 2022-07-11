@@ -30,11 +30,11 @@ const Login = () => {
       <h1>Login</h1>
       <form className="form" onSubmit={handleSubmit}>
         <div className="email-input">
-          <label htmlFor="email">E-mail</label>
+          <label htmlFor="email">Email</label>
           <input type="text" name="email" value={email} onChange={handleChange} />
         </div>
         <div className="password-input">
-          <label htmlFor="password">Senha</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
@@ -43,12 +43,12 @@ const Login = () => {
           />
         </div>
         <ButtonContainer>
-          <Button type="submit">ENTRAR</Button>
+          <Button type="submit">Login</Button>
           <Button
             buttonType={BUTTON_TYPE_CLASSES.inverted}
             onClick={clearFormFields}
           >
-            LIMPAR
+            CLEAR
           </Button>
         </ButtonContainer>
       </form>
