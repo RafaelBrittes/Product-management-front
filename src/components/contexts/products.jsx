@@ -23,7 +23,6 @@ export const ProductsProvider = ({ children }) => {
   };
 
   const addNewProduct = async (productToAdd) => {
-    console.log("productToAdd", productToAdd)
     api.post("/product", {name: productToAdd})
   };
 

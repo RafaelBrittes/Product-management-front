@@ -52,6 +52,8 @@ const Login = () => {
           </Button>
         </ButtonContainer>
       </form>
+
+      <h1>Create an account:</h1>
     </LoginContainer>
   );
 };

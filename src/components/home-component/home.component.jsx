@@ -4,6 +4,7 @@ import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { AuthContext } from "../contexts/auth";
 import { ProductsContext } from "../contexts/products";
 import NewProduct from "../new-product/new-product.component";
+import NewTag from "../new-tag/new-tag.component";
 import Products from "../products/products.component";
 import { HomeContainer } from "./home.styles";
 
@@ -12,6 +13,7 @@ const Home = () => {
   const { products, setProducts, loading, setLoading } =
     useContext(ProductsContext);
   const [openModal, setOpenModal] = useState(false);
+  const [openTagModal, setOpenTagModal] = useState(false);
 
   const handleLogout = () => {
     logoutUser();
@@ -46,6 +48,14 @@ const Home = () => {
         Add new Product
       </Button>
       {openModal && <NewProduct setOpenModal={setOpenModal} />}
+      <Button
+        onClick={() => {
+          setOpenTagModal(true);
+        }}
+      >
+        Add new Tag
+      </Button>
+      {openTagModal && <NewTag setOpenTagModal={setOpenTagModal} />}
     </HomeContainer>
   );
 };

@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
-import { ProductsContext } from "../contexts/products";
-import { FormContainer, NewProductBackground } from "./new-product.styles";
+import { FormContainer, NewProductBackground } from "./new-tag.styles";
 import { toast } from "react-toastify";
+import { TagsContext } from "../contexts/tags";
 
-const NewProduct = ({ setOpenModal }) => {
+const NewTag = ({ setOpenTagModal }) => {
   const [formValues, setFormValues] = useState("");
-  const { productName } = formValues;
-  const { addNewProduct } = useContext(ProductsContext);
+  const { tagName } = formValues;
+  const { addNewTag } = useContext(TagsContext);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -17,8 +17,8 @@ const NewProduct = ({ setOpenModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addNewProduct(formValues).then((res) => {
-      toast.success("Product Created", {
+    addNewTag(formValues).then((res) => {
+      toast.success("Tag Created", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: true,
@@ -33,21 +33,22 @@ const NewProduct = ({ setOpenModal }) => {
   return (
     <NewProductBackground>
       <FormContainer onSubmit={handleSubmit}>
-        <div className="productName">
-          <label htmlFor="productName">Product name</label>
+        <div className="tagName">
+          <label htmlFor="tagName">Tag name</label>
           <input
-            placeholder="Name"
+            required
+            placeholder="Tag name"
             type="text"
-            name="productName"
-            value={productName}
+            name="tagName"
+            value={tagName}
             onChange={handleChange}
           />
         </div>
-        <Button type="submit">Create new Product</Button>
+        <Button type="submit">Create new Tag</Button>
         <Button
           buttonType={BUTTON_TYPE_CLASSES.inverted}
           onClick={() => {
-            setOpenModal(false);
+            setOpenTagModal(false);
           }}
           type="submit"
         >
@@ -58,4 +59,4 @@ const NewProduct = ({ setOpenModal }) => {
   );
 };
 
-export default NewProduct;
+export default NewTag;
