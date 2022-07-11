@@ -7,6 +7,7 @@ export const ProductsContext = createContext({
   setLoading: () => {},
   loading: null,
   removeProduct: () => {},
+  addNewProduct: () => {},
 });
 
 export const ProductsProvider = ({ children }) => {
@@ -21,12 +22,18 @@ export const ProductsProvider = ({ children }) => {
     setProducts(newProducts);
   };
 
+  const addNewProduct = async (productToAdd) => {
+    console.log("productToAdd", productToAdd)
+    api.post("/product", {name: productToAdd})
+  };
+
   const value = {
     products,
     setProducts,
     setLoading,
     loading,
     removeProduct,
+    addNewProduct,
   };
 
   return (
