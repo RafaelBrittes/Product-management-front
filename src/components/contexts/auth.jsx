@@ -1,12 +1,13 @@
 import React, { createContext, useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { api, createSession } from "../../services/api";
+import { api } from "../../services/api";
 
 export const AuthContext = createContext({
   user: null,
   setUser: () => null,
   loginUser: () => {},
+  createUser: () => {},
   loading: null,
 });
 
@@ -18,7 +19,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const recoveredUser = localStorage.getItem("user");
     const token = localStorage.getItem("token");
-
 
     if (recoveredUser && token) {
       setUser(JSON.parse(recoveredUser));
@@ -44,6 +44,14 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
+  const createUser = async (name, email, password) => {
+    const data = { name, email, password };
+    api.post("/register", data).then((response) => {
+      const token = response.data.message.token;
+      api.defaults.headers.Authorization = `Bearer ${token}`;
+    });
+  };
+
   const logoutUser = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
@@ -52,7 +60,7 @@ export const AuthProvider = ({ children }) => {
     navigate("/login");
   };
 
-  const value = { user, setUser, loginUser, logoutUser, loading };
+  const value = { user, setUser, loginUser, logoutUser, loading, createUser };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -36,6 +36,7 @@ const NewProduct = ({ setOpenModal }) => {
         <div className="productName">
           <label htmlFor="productName">Product name</label>
           <input
+            required
             placeholder="Name"
             type="text"
             name="productName"

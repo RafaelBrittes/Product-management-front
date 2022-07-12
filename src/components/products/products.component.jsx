@@ -4,7 +4,7 @@ import { api } from "../../services/api";
 import AddTags from "../add-tags/add-tags.component";
 import { ProductsContext } from "../contexts/products";
 import Tags from "../tags/tags.component";
-import { ButtonContainer, ProductsContainer } from "./products.styles";
+import { ButtonContainer, ProductsContainer, TagsContainer } from "./products.styles";
 
 const Products = ({ product }) => {
   const { removeProduct } = useContext(ProductsContext);
@@ -49,15 +49,18 @@ const Products = ({ product }) => {
       <ButtonContainer>
         <button onClick={removeProductHandler}>&#10005;</button>
         <button onClick={showProductTagsHandler}>Show Tags &#10095;</button>
+        <button onClick={showTagsHandler}>Add Tags &#x2b;</button>
+        <TagsContainer>
         {tags &&
           tags.map((tag) => (
             <Tags key={tag.id} tag={tag} product={product}></Tags>
           ))}
-        <button onClick={showTagsHandler}>Add Tags &#x2b;</button>
+        
         {tagsToAdd &&
           tagsToAdd.map((tag) => (
             <AddTags key={tag.id} tag={tag} product={product}></AddTags>
           ))}
+          </TagsContainer>
       </ButtonContainer>
     </ProductsContainer>
   );

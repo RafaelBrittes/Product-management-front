@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ProductsContainer = styled.div`
+margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -10,7 +11,7 @@ export const ProductsContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  margin: 5px 0 15px 0;
+  margin: 5px 0 40px 0;
   button {
     background-color: #2c2c2c;
     border: none;
@@ -26,8 +27,13 @@ export const ButtonContainer = styled.div`
       background-color: #ffffff;
       color: #000000;
       font-weight: 500;
-
+      cursor: pointer;
     }
-    
   }
+`;
+
+export const TagsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

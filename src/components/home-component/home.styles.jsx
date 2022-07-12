@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { BaseButton } from "../button/button.styles";
 
 export const HomeContainer = styled.div`
   display: flex;

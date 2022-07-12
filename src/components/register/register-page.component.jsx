@@ -1,14 +1,13 @@
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
-import { ButtonContainer, LoginContainer } from "./login-page.styles";
+import { ButtonContainer, LoginContainer } from "./register-page.styles";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/auth";
-import Register from "../register/register-page.component";
 
-const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+const Register = () => {
+  const { createUser } = useContext(AuthContext);
 
-  const [formValues, setFormValues] = useState({ email: "", password: "" });
-  const { email, password } = formValues;
+  const [formValues, setFormValues] = useState({name: "", email: "", password: "" });
+  const { name, email, password } = formValues;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -17,19 +16,22 @@ const Login = () => {
   };
 
   const clearFormFields = () => {
-    setFormValues({ email: "", password: "" });
+    setFormValues({name: "", email: "", password: "" });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginUser(email, password);
-    
+    createUser(name, email, password);
   };
 
   return (
     <LoginContainer>
-      <h1>Login</h1>
+      <h1>Create new account:</h1>
       <form className="form" onSubmit={handleSubmit}>
+      <div className="name-input">
+          <label htmlFor="name">Name</label>
+          <input type="text" name="name" value={name} onChange={handleChange} />
+        </div>
         <div className="email-input">
           <label htmlFor="email">Email</label>
           <input type="text" name="email" value={email} onChange={handleChange} />
@@ -44,7 +46,7 @@ const Login = () => {
           />
         </div>
         <ButtonContainer>
-          <Button type="submit">Login</Button>
+          <Button type="submit">Sign up</Button>
           <Button
             buttonType={BUTTON_TYPE_CLASSES.inverted}
             onClick={clearFormFields}
@@ -53,9 +55,8 @@ const Login = () => {
           </Button>
         </ButtonContainer>
       </form>
-      <Register/>
     </LoginContainer>
   );
 };
 
-export default Login;
+export default Register;

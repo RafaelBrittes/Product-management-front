@@ -7,9 +7,6 @@ export const LoginContainer = styled.div`
   div {
     margin: 0px;
   }
-  form{
-    margin-bottom: 90px;
-  }
 
   input {
     background: none;
