@@ -23,7 +23,10 @@ export const ProductsProvider = ({ children }) => {
   };
 
   const addNewProduct = async (productToAdd) => {
-    api.post("/product", {name: productToAdd})
+    api.post("/product", { name: productToAdd }).then((response) => {
+      const newProduct = response.data.data;
+      setProducts([...products, newProduct]);
+    });
   };
 
   const value = {
